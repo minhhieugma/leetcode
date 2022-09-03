@@ -1,7 +1,7 @@
 using System.Diagnostics;
 namespace LeetCode;
 
-public class Tests
+public class No7_ReverseInteger
 {
     [SetUp]
     public void Setup()
