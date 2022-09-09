@@ -29,22 +29,22 @@ public class No464_CanIWin
         if (all_nums.Sum() < desiredTotal)
             return false;
 
-        var winner = Draw(desiredTotal, all_nums, mask, mask, 0, visted_matrix);
+        var winner = Draw(desiredTotal, all_nums, mask, 0, visted_matrix);
         return winner;
     }
 
     public bool
-        Draw(int desiredTotal, int[] all_nums, int mask, int remainder, int score,
+        Draw(int desiredTotal, int[] all_nums, int remainder, int score,
          bool?[] visted_matrix)
     {
-        if (visted_matrix[mask & remainder] != null)
+        if (visted_matrix[remainder] != null)
         {
-            return visted_matrix[mask & remainder]!.Value;
+            return visted_matrix[remainder]!.Value;
         }
 
         if (score >= desiredTotal)
         {
-            visted_matrix[mask & remainder] = false;
+            visted_matrix[remainder] = false;
             return false;
         }
 
@@ -58,16 +58,16 @@ public class No464_CanIWin
 
             var cur_remainder = remainder ^ cur_mask;
 
-            var winner = Draw(desiredTotal, all_nums, mask, cur_remainder, score + all_nums[i], visted_matrix);
+            var winner = Draw(desiredTotal, all_nums, cur_remainder, score + all_nums[i], visted_matrix);
 
             if (winner == false)
             {
-                visted_matrix[mask & remainder] = true;
+                visted_matrix[remainder] = true;
                 return true;
             }
         }
 
-        visted_matrix[mask & remainder] = false;
+        visted_matrix[remainder] = false;
         return false;
     }
 
